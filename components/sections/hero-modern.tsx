@@ -35,7 +35,7 @@ export default function HeroModern() {
   }, [])
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
+    <section className="relative min-h-[80vh] bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
       {/* Animated gradient overlay */}
       <div
         className="absolute inset-0 opacity-30 transition-all duration-1000"
@@ -81,8 +81,8 @@ export default function HeroModern() {
         }}
       />
 
-      <div className="container mx-auto px-4 py-12 relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[85vh]">
+      <div className="container mx-auto px-4 pt-8 pb-12 relative">
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
           {/* Left Content */}
           <motion.div
             className="space-y-8 z-10"
