@@ -3,67 +3,56 @@
 import { Camera, Backpack, Coffee, Mountain, Palmtree, Music, Heart } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 const routes = [
   {
     id: "photography",
     icon: Camera,
     title: "Photography Paradise",
-    description: "Capture golden rice terraces, ethnic villages, and snow-capped peaks",
     gradient: "from-orange-400 to-pink-500",
-    destinations: ["Yuanyang Rice Terraces", "Dongchuan Red Land", "Meili Snow Mountain"],
+    image: "/images/experiences/yuanyang-photography.jpg",
     duration: "7-10 days",
-    difficulty: "Moderate",
   },
   {
     id: "adventure",
     icon: Backpack,
     title: "Outdoor Adventure",
-    description: "Trek Tiger Leaping Gorge, climb glaciers, and explore hidden valleys",
     gradient: "from-green-400 to-emerald-600",
-    destinations: ["Tiger Leaping Gorge", "Yubeng Village", "Pudacuo National Park"],
+    image: "/images/experiences/tiger-leaping-trek.jpg",
     duration: "10-14 days",
-    difficulty: "Challenging",
   },
   {
     id: "tea-coffee",
     icon: Coffee,
     title: "Tea & Coffee Trail",
-    description: "From ancient Pu'er tea mountains to specialty coffee plantations",
     gradient: "from-amber-400 to-orange-600",
-    destinations: ["Pu'er Tea Mountains", "Baoshan Coffee", "Dali Tea Ceremonies"],
+    image: "/images/experiences/coffee-farm.jpg",
     duration: "5-7 days",
-    difficulty: "Easy",
   },
   {
     id: "spiritual",
     icon: Mountain,
     title: "Spiritual Journey",
-    description: "Tibetan monasteries, sacred mountains, and meditation retreats",
     gradient: "from-purple-400 to-indigo-600",
-    destinations: ["Songzanlin Monastery", "Feilai Temple", "Chicken Foot Mountain"],
+    image: "/images/experiences/tibetan-monastery.jpg",
     duration: "8-12 days",
-    difficulty: "Moderate",
   },
   {
     id: "tropical",
     icon: Palmtree,
     title: "Tropical Escape",
-    description: "Rainforest adventures, exotic fruits, and Dai culture in the south",
     gradient: "from-green-400 to-teal-500",
-    destinations: ["Wild Elephant Valley", "Dai Villages", "Tropical Botanical Garden"],
+    image: "/images/experiences/wild-elephant.jpg",
     duration: "5-7 days",
-    difficulty: "Easy",
   },
   {
     id: "ethnic",
     icon: Music,
     title: "Cultural Immersion",
-    description: "Live with local families, learn traditional crafts, attend festivals",
     gradient: "from-red-400 to-rose-600",
-    destinations: ["Naxi Villages", "Yi Fire Festival", "Bai Tie-Dye Workshops"],
+    image: "/images/experiences/naxi-culture.jpg",
     duration: "7-14 days",
-    difficulty: "Easy",
   },
 ]
 
@@ -92,53 +81,34 @@ export default function ThemeRoutes() {
             return (
               <Card
                 key={route.id}
-                className="group hover:shadow-2xl transition-all duration-300 cursor-pointer border-2 hover:border-emerald-200 overflow-hidden"
+                className="group hover:shadow-2xl transition-all duration-300 cursor-pointer border-0 overflow-hidden"
               >
-                <div className={`h-2 bg-gradient-to-r ${route.gradient}`} />
-                <CardContent className="p-6">
-                  {/* Icon */}
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${route.gradient}
-                    flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <Icon className="w-7 h-7 text-white" />
-                  </div>
+                {/* Image */}
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={route.image}
+                    alt={route.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  {/* Gradient Overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-t ${route.gradient} opacity-40 group-hover:opacity-30 transition-opacity`} />
 
-                  {/* Content */}
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-emerald-600 transition-colors">
-                    {route.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
-                    {route.description}
-                  </p>
-
-                  {/* Destinations */}
-                  <div className="space-y-2 mb-4">
-                    <div className="text-sm font-semibold text-gray-700">Highlights:</div>
-                    <ul className="text-sm text-gray-600 space-y-1">
-                      {route.destinations.slice(0, 2).map((dest, idx) => (
-                        <li key={idx} className="flex items-center gap-2">
-                          <div className="w-1 h-1 bg-emerald-500 rounded-full" />
-                          {dest}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Meta Info */}
-                  <div className="flex items-center justify-between pt-4 border-t">
-                    <div className="flex gap-4 text-xs">
-                      <span className="text-gray-600">
-                        <span className="font-semibold text-gray-900">{route.duration}</span>
-                      </span>
-                      <span className={`px-2 py-1 rounded-full ${
-                        route.difficulty === 'Easy' ? 'bg-green-100 text-green-700' :
-                        route.difficulty === 'Moderate' ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-red-100 text-red-700'
-                      }`}>
-                        {route.difficulty}
-                      </span>
+                  {/* Icon Badge */}
+                  <div className="absolute top-4 right-4">
+                    <div className={`w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/40`}>
+                      <Icon className="w-6 h-6 text-white" />
                     </div>
                   </div>
-                </CardContent>
+
+                  {/* Title Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                    <h3 className="text-2xl font-bold text-white mb-2">
+                      {route.title}
+                    </h3>
+                    <p className="text-white/90 text-sm">{route.duration}</p>
+                  </div>
+                </div>
               </Card>
             )
           })}
