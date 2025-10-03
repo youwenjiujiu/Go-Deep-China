@@ -81,8 +81,8 @@ export default function HeroModern() {
         }}
       />
 
-      <div className="container mx-auto px-4 py-20 relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
+      <div className="container mx-auto px-4 py-12 relative">
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[85vh]">
           {/* Left Content */}
           <motion.div
             className="space-y-8 z-10"
