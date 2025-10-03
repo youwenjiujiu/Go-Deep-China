@@ -14,11 +14,11 @@ export default function HeroModern() {
   const opacity = useTransform(scrollY, [0, 200], [1, 0])
 
   const destinations = [
-    { id: "shangri-la", name: "Shangri-La", x: "45%", y: "18%", color: "from-amber-500 to-amber-600" },
-    { id: "lijiang", name: "Lijiang", x: "38%", y: "32%", color: "from-blue-500 to-blue-600" },
-    { id: "dali", name: "Dali", x: "30%", y: "48%", color: "from-purple-500 to-purple-600" },
-    { id: "kunming", name: "Kunming", x: "52%", y: "55%", color: "from-emerald-500 to-emerald-600" },
-    { id: "xishuangbanna", name: "Xishuangbanna", x: "60%", y: "85%", color: "from-red-500 to-red-600" },
+    { id: "shangri-la", name: "Shangri-La", x: "35%", y: "28%", color: "from-amber-500 to-amber-600" },
+    { id: "lijiang", name: "Lijiang", x: "40%", y: "35%", color: "from-blue-500 to-blue-600" },
+    { id: "dali", name: "Dali", x: "32%", y: "45%", color: "from-purple-500 to-purple-600" },
+    { id: "kunming", name: "Kunming", x: "55%", y: "50%", color: "from-emerald-500 to-emerald-600" },
+    { id: "xishuangbanna", name: "Xishuangbanna", x: "50%", y: "75%", color: "from-red-500 to-red-600" },
   ]
 
   // Animated gradient background
@@ -241,7 +241,7 @@ export default function HeroModern() {
                       </filter>
                     </defs>
                     <motion.path
-                      d="M 180,50 L 200,45 L 215,50 L 225,60 L 235,75 L 245,90 L 255,110 L 265,130 L 275,155 L 285,180 L 295,210 L 305,240 L 310,270 L 308,300 L 300,325 L 285,345 L 265,360 L 240,368 L 210,372 L 180,370 L 150,365 L 125,355 L 105,340 L 90,320 L 80,295 L 72,270 L 68,245 L 65,220 L 65,195 L 68,170 L 75,145 L 85,125 L 100,110 L 120,100 L 140,95 L 155,90 L 165,80 L 172,65 Z"
+                      d="M 70,120 L 50,130 L 45,145 L 50,160 L 60,175 L 75,185 L 90,195 L 100,210 L 105,230 L 108,250 L 110,275 L 115,300 L 125,320 L 140,335 L 160,345 L 180,350 L 205,352 L 230,348 L 255,340 L 275,330 L 290,315 L 300,295 L 308,270 L 315,245 L 320,220 L 328,200 L 340,185 L 355,175 L 365,165 L 370,150 L 368,135 L 360,125 L 345,120 L 330,125 L 315,135 L 300,145 L 285,155 L 270,160 L 255,162 L 240,160 L 225,155 L 210,145 L 195,135 L 180,125 L 165,118 L 150,115 L 135,115 L 120,118 L 105,122 L 88,125 Z"
                       fill="rgba(255,255,255,0.1)"
                       stroke="url(#gradient)"
                       strokeWidth="3"
@@ -258,9 +258,9 @@ export default function HeroModern() {
                       </linearGradient>
                     </defs>
 
-                    {/* Mountain ranges - adjusted for new shape */}
+                    {/* Mountain ranges - northwest region */}
                     <motion.path
-                      d="M110,100 L125,65 L140,100 M180,85 L200,50 L220,85 M260,120 L280,85 L300,120"
+                      d="M140,125 L155,110 L170,125 M190,130 L210,115 L230,130 M250,145 L270,130 L290,145"
                       stroke="rgba(255,255,255,0.3)"
                       strokeWidth="2"
                       fill="none"
