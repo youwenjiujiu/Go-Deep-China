@@ -241,7 +241,7 @@ export default function HeroModern() {
                       </filter>
                     </defs>
                     <motion.path
-                      d="M100,200 Q150,100 250,120 Q320,140 350,200 Q340,280 280,340 Q200,380 140,340 Q80,280 100,200 Z"
+                      d="M 80,120 L 90,80 L 110,70 L 140,75 L 160,60 L 180,65 L 190,55 L 200,70 L 220,75 L 240,90 L 260,100 L 280,120 L 300,140 L 320,170 L 330,200 L 340,230 L 345,260 L 340,290 L 330,320 L 310,340 L 280,350 L 250,360 L 220,370 L 190,375 L 160,370 L 140,360 L 120,345 L 100,325 L 85,300 L 75,270 L 70,240 L 68,210 L 70,180 L 75,150 Z"
                       fill="rgba(255,255,255,0.1)"
                       stroke="url(#gradient)"
                       strokeWidth="3"
@@ -258,9 +258,9 @@ export default function HeroModern() {
                       </linearGradient>
                     </defs>
 
-                    {/* Mountain ranges */}
+                    {/* Mountain ranges - adjusted for new shape */}
                     <motion.path
-                      d="M120,180 L140,140 L160,180 M200,160 L220,110 L240,160 M280,190 L300,150 L320,190"
+                      d="M110,100 L125,65 L140,100 M180,85 L200,50 L220,85 M260,120 L280,85 L300,120"
                       stroke="rgba(255,255,255,0.3)"
                       strokeWidth="2"
                       fill="none"
