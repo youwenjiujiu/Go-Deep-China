@@ -83,6 +83,14 @@ model Experience {
   images          String[]
   coverImage      String
   featured        Boolean       @default(false)
+
+  // Departure settings
+  departureType   DepartureType @default(DAILY)
+  confirmationType ConfirmationType @default(INSTANT)
+  requiresMinimum Boolean       @default(false)
+  advanceBookingDays Int        @default(1)
+  cutoffHours     Int           @default(24)
+
   destination     Destination?  @relation(fields: [destinationId], references: [id])
   destinationId   String?
   ethnicGroup     EthnicGroup?  @relation(fields: [ethnicGroupId], references: [id])
@@ -93,6 +101,19 @@ model Experience {
   updatedAt       DateTime      @updatedAt
   bookings        Booking[]
   reviews         Review[]
+  departureDates  DepartureDate[]
+}
+
+enum DepartureType {
+  DAILY           // 每天发团
+  WEEKLY          // 每周固定日期
+  FIXED_DATES     // 指定日期
+  ON_DEMAND       // 按需发团
+}
+
+enum ConfirmationType {
+  INSTANT         // 即时确认
+  PENDING         // 需要二次确认
 }
 
 enum ExperienceCategory {
@@ -357,6 +378,14 @@ model Booking {
   status          BookingStatus
   paymentStatus   PaymentStatus
   specialRequests String?
+
+  // Confirmation details
+  confirmationCode String?       @unique
+  needsConfirmation Boolean      @default(false)
+  confirmedAt     DateTime?
+  rejectedAt      DateTime?
+  rejectionReason String?
+
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
 }
@@ -379,6 +408,32 @@ enum PaymentStatus {
   PENDING
   PAID
   REFUNDED
+}
+
+// Departure Dates - 发团日期管理
+model DepartureDate {
+  id              String       @id @default(cuid())
+  experience      Experience   @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  experienceId    String
+  date            DateTime
+  availableSpots  Int          // 可用名额
+  bookedSpots     Int          @default(0)
+  status          DepartureStatus @default(AVAILABLE)
+  price           Float?       // 该日期特殊价格（如果有）
+  notes           String?      // 备注
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@unique([experienceId, date])
+  @@index([experienceId, date])
+}
+
+enum DepartureStatus {
+  AVAILABLE       // 可预订
+  GUARANTEED      // 确定成团
+  LIMITED         // 名额有限
+  FULL            // 已满员
+  CANCELLED       // 已取消
 }
 
 // Reviews

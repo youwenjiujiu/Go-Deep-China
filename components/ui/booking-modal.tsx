@@ -46,6 +46,33 @@ export function BookingModal({ isOpen, onClose, item, type }: BookingModalProps)
     <div className="space-y-4">
       <h3 className="font-bold text-lg mb-4">Select Date & Time</h3>
 
+      {/* Booking Info Alerts */}
+      <div className="space-y-2">
+        <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg flex items-start gap-2">
+          <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+          <div className="text-sm text-blue-900">
+            <p className="font-semibold">Confirmation Type: Pending Confirmation</p>
+            <p className="text-blue-700 mt-1">Your booking will be confirmed within 24 hours</p>
+          </div>
+        </div>
+
+        <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-2">
+          <Users className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+          <div className="text-sm text-amber-900">
+            <p className="font-semibold">Minimum Group Size: 4 people</p>
+            <p className="text-amber-700 mt-1">Tour departs only when minimum group size is met</p>
+          </div>
+        </div>
+
+        <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+          <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+          <div className="text-sm text-green-900">
+            <p className="font-semibold">Departure Status: 6/10 spots booked</p>
+            <p className="text-green-700 mt-1">This departure is guaranteed to operate</p>
+          </div>
+        </div>
+      </div>
+
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
           <Calendar className="w-4 h-4 inline mr-1" />
@@ -59,6 +86,9 @@ export function BookingModal({ isOpen, onClose, item, type }: BookingModalProps)
           required
           min={new Date().toISOString().split('T')[0]}
         />
+        <p className="text-xs text-gray-500 mt-1">
+          Available departure dates: Every Monday, Wednesday, Friday
+        </p>
       </div>
 
       {type === "experience" && (
