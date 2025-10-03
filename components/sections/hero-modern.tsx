@@ -14,11 +14,11 @@ export default function HeroModern() {
   const opacity = useTransform(scrollY, [0, 200], [1, 0])
 
   const destinations = [
-    { id: "lijiang", name: "Lijiang", x: "45%", y: "35%", color: "from-blue-500 to-blue-600" },
-    { id: "dali", name: "Dali", x: "35%", y: "40%", color: "from-purple-500 to-purple-600" },
-    { id: "kunming", name: "Kunming", x: "55%", y: "55%", color: "from-emerald-500 to-emerald-600" },
-    { id: "shangri-la", name: "Shangri-La", x: "50%", y: "20%", color: "from-amber-500 to-amber-600" },
-    { id: "xishuangbanna", name: "Xishuangbanna", x: "65%", y: "75%", color: "from-red-500 to-red-600" },
+    { id: "shangri-la", name: "Shangri-La", x: "40%", y: "15%", color: "from-amber-500 to-amber-600" },
+    { id: "lijiang", name: "Lijiang", x: "35%", y: "30%", color: "from-blue-500 to-blue-600" },
+    { id: "dali", name: "Dali", x: "28%", y: "45%", color: "from-purple-500 to-purple-600" },
+    { id: "kunming", name: "Kunming", x: "50%", y: "50%", color: "from-emerald-500 to-emerald-600" },
+    { id: "xishuangbanna", name: "Xishuangbanna", x: "55%", y: "80%", color: "from-red-500 to-red-600" },
   ]
 
   // Animated gradient background
