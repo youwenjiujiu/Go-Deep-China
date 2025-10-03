@@ -14,11 +14,11 @@ export default function HeroModern() {
   const opacity = useTransform(scrollY, [0, 200], [1, 0])
 
   const destinations = [
-    { id: "shangri-la", name: "Shangri-La", x: "40%", y: "15%", color: "from-amber-500 to-amber-600" },
-    { id: "lijiang", name: "Lijiang", x: "35%", y: "30%", color: "from-blue-500 to-blue-600" },
-    { id: "dali", name: "Dali", x: "28%", y: "45%", color: "from-purple-500 to-purple-600" },
-    { id: "kunming", name: "Kunming", x: "50%", y: "50%", color: "from-emerald-500 to-emerald-600" },
-    { id: "xishuangbanna", name: "Xishuangbanna", x: "55%", y: "80%", color: "from-red-500 to-red-600" },
+    { id: "shangri-la", name: "Shangri-La", x: "45%", y: "18%", color: "from-amber-500 to-amber-600" },
+    { id: "lijiang", name: "Lijiang", x: "38%", y: "32%", color: "from-blue-500 to-blue-600" },
+    { id: "dali", name: "Dali", x: "30%", y: "48%", color: "from-purple-500 to-purple-600" },
+    { id: "kunming", name: "Kunming", x: "52%", y: "55%", color: "from-emerald-500 to-emerald-600" },
+    { id: "xishuangbanna", name: "Xishuangbanna", x: "60%", y: "85%", color: "from-red-500 to-red-600" },
   ]
 
   // Animated gradient background
@@ -241,7 +241,7 @@ export default function HeroModern() {
                       </filter>
                     </defs>
                     <motion.path
-                      d="M 80,120 L 90,80 L 110,70 L 140,75 L 160,60 L 180,65 L 190,55 L 200,70 L 220,75 L 240,90 L 260,100 L 280,120 L 300,140 L 320,170 L 330,200 L 340,230 L 345,260 L 340,290 L 330,320 L 310,340 L 280,350 L 250,360 L 220,370 L 190,375 L 160,370 L 140,360 L 120,345 L 100,325 L 85,300 L 75,270 L 70,240 L 68,210 L 70,180 L 75,150 Z"
+                      d="M 60,180 L 50,140 L 55,110 L 75,90 L 100,85 L 125,75 L 150,70 L 175,65 L 200,60 L 220,55 L 240,58 L 260,65 L 280,75 L 300,85 L 315,100 L 325,120 L 335,145 L 345,175 L 350,205 L 355,235 L 358,265 L 355,295 L 345,320 L 330,340 L 310,355 L 285,365 L 255,370 L 225,372 L 195,370 L 170,365 L 145,355 L 125,340 L 110,320 L 95,295 L 85,270 L 75,245 L 68,220 L 63,195 Z"
                       fill="rgba(255,255,255,0.1)"
                       stroke="url(#gradient)"
                       strokeWidth="3"
