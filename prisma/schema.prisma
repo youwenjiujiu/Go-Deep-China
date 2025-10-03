@@ -1,0 +1,452 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Destinations
+model Destination {
+  id              String            @id @default(cuid())
+  name            String
+  nameZh          String
+  slug            String            @unique
+  province        String            @default("Yunnan")
+  region          String
+  description     String
+  descriptionZh   String
+  latitude        Float
+  longitude       Float
+  altitude        Int?
+  bestSeasons     String[]
+  tags            String[]
+  highlights      String[]
+  images          String[]
+  coverImage      String
+  featured        Boolean           @default(false)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  experiences     Experience[]
+  accommodations  Accommodation[]
+  itineraries     ItineraryDay[]
+  reviews         Review[]
+}
+
+// Ethnic Groups
+model EthnicGroup {
+  id              String       @id @default(cuid())
+  name            String       @unique
+  nameZh          String
+  slug            String       @unique
+  population      String
+  mainRegions     String[]
+  description     String
+  descriptionZh   String
+  languages       String[]
+  religion        String?
+  culturalTraits  String[]
+  festivals       Festival[]
+  traditionalCrafts String[]
+  costume         String?
+  architecture    String?
+  cuisine         String[]
+  images          String[]
+  coverImage      String
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  experiences     Experience[]
+}
+
+// Experiences & Activities
+model Experience {
+  id              String        @id @default(cuid())
+  title           String
+  titleZh         String
+  slug            String        @unique
+  category        ExperienceCategory
+  description     String
+  descriptionZh   String
+  duration        String
+  difficulty      Difficulty
+  price           Float?
+  currency        String        @default("CNY")
+  minGroupSize    Int?
+  maxGroupSize    Int?
+  includes        String[]
+  excludes        String[]
+  requirements    String[]
+  images          String[]
+  coverImage      String
+  featured        Boolean       @default(false)
+  destination     Destination?  @relation(fields: [destinationId], references: [id])
+  destinationId   String?
+  ethnicGroup     EthnicGroup?  @relation(fields: [ethnicGroupId], references: [id])
+  ethnicGroupId   String?
+  provider        Provider?     @relation(fields: [providerId], references: [id])
+  providerId      String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  bookings        Booking[]
+  reviews         Review[]
+}
+
+enum ExperienceCategory {
+  CULTURAL_IMMERSION
+  OUTDOOR_ADVENTURE
+  FOOD_COOKING
+  PHOTOGRAPHY
+  HANDICRAFT
+  SPIRITUAL
+  WILDLIFE
+  TEA_COFFEE
+  FESTIVAL
+  HOMESTAY
+}
+
+enum Difficulty {
+  EASY
+  MODERATE
+  CHALLENGING
+  EXTREME
+}
+
+// Festivals
+model Festival {
+  id              String       @id @default(cuid())
+  name            String
+  nameZh          String
+  slug            String       @unique
+  ethnicGroup     EthnicGroup  @relation(fields: [ethnicGroupId], references: [id])
+  ethnicGroupId   String
+  description     String
+  descriptionZh   String
+  significance    String
+  activities      String[]
+  location        String[]
+  dateType        DateType
+  fixedDate       String?
+  lunarDate       String?
+  approximateTime String
+  duration        String
+  images          String[]
+  coverImage      String
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+enum DateType {
+  FIXED
+  LUNAR
+  SEASONAL
+}
+
+// Accommodations
+model Accommodation {
+  id              String       @id @default(cuid())
+  name            String
+  nameZh          String
+  slug            String       @unique
+  type            AccommodationType
+  description     String
+  descriptionZh   String
+  stars           Int?
+  priceRange      String
+  amenities       String[]
+  roomTypes       Json
+  address         String
+  addressZh       String
+  contactPhone    String?
+  contactEmail    String?
+  website         String?
+  images          String[]
+  coverImage      String
+  latitude        Float
+  longitude       Float
+  destination     Destination  @relation(fields: [destinationId], references: [id])
+  destinationId   String
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  bookings        Booking[]
+  reviews         Review[]
+}
+
+enum AccommodationType {
+  HOTEL
+  GUESTHOUSE
+  HOSTEL
+  BOUTIQUE
+  ETHNIC_HOMESTAY
+  RESORT
+  CAMPING
+}
+
+// Local Guides
+model Guide {
+  id              String       @id @default(cuid())
+  name            String
+  nameZh          String
+  bio             String
+  bioZh           String
+  languages       String[]
+  specialties     String[]
+  ethnicGroup     String?
+  experience      Int
+  rating          Float        @default(0)
+  totalReviews    Int          @default(0)
+  certifications  String[]
+  contactEmail    String
+  contactPhone    String
+  avatar          String?
+  verified        Boolean      @default(false)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  bookings        Booking[]
+  reviews         Review[]
+}
+
+// Service Providers
+model Provider {
+  id              String       @id @default(cuid())
+  name            String
+  nameZh          String
+  type            ProviderType
+  description     String
+  descriptionZh   String
+  license         String?
+  contactEmail    String
+  contactPhone    String
+  website         String?
+  address         String
+  verified        Boolean      @default(false)
+  rating          Float        @default(0)
+  totalReviews    Int          @default(0)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  experiences     Experience[]
+}
+
+enum ProviderType {
+  TOUR_OPERATOR
+  ACTIVITY_PROVIDER
+  WORKSHOP_HOST
+  TRANSPORTATION
+}
+
+// Travel Itineraries
+model Itinerary {
+  id              String         @id @default(cuid())
+  title           String
+  titleZh         String
+  slug            String         @unique
+  description     String
+  descriptionZh   String
+  duration        Int
+  theme           String[]
+  difficulty      Difficulty
+  estimatedBudget String
+  includes        String[]
+  excludes        String[]
+  images          String[]
+  coverImage      String
+  featured        Boolean        @default(false)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  days            ItineraryDay[]
+}
+
+model ItineraryDay {
+  id              String       @id @default(cuid())
+  itinerary       Itinerary    @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+  itineraryId     String
+  dayNumber       Int
+  title           String
+  titleZh         String
+  description     String
+  descriptionZh   String
+  activities      Json
+  meals           String[]
+  accommodation   String?
+  destination     Destination? @relation(fields: [destinationId], references: [id])
+  destinationId   String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@unique([itineraryId, dayNumber])
+}
+
+// Users
+model User {
+  id              String       @id @default(cuid())
+  email           String       @unique
+  emailVerified   DateTime?
+  name            String?
+  password        String?
+  image           String?
+  avatar          String?
+  country         String?
+  preferredLang   String       @default("en")
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  bookings        Booking[]
+  reviews         Review[]
+  savedItems      SavedItem[]
+  galleryImages   GalleryImage[]
+  accounts        Account[]
+  sessions        Session[]
+}
+
+// NextAuth Models
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Bookings
+model Booking {
+  id              String         @id @default(cuid())
+  user            User           @relation(fields: [userId], references: [id])
+  userId          String
+  bookingType     BookingType
+  experience      Experience?    @relation(fields: [experienceId], references: [id])
+  experienceId    String?
+  accommodation   Accommodation? @relation(fields: [accommodationId], references: [id])
+  accommodationId String?
+  guide           Guide?         @relation(fields: [guideId], references: [id])
+  guideId         String?
+  bookingDate     DateTime
+  startDate       DateTime
+  endDate         DateTime?
+  numberOfPeople  Int
+  totalPrice      Float
+  currency        String         @default("CNY")
+  status          BookingStatus
+  paymentStatus   PaymentStatus
+  specialRequests String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+enum BookingType {
+  EXPERIENCE
+  ACCOMMODATION
+  GUIDE
+  PACKAGE
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  REFUNDED
+}
+
+// Reviews
+model Review {
+  id              String         @id @default(cuid())
+  user            User           @relation(fields: [userId], references: [id])
+  userId          String
+  reviewType      ReviewType
+  experience      Experience?    @relation(fields: [experienceId], references: [id])
+  experienceId    String?
+  accommodation   Accommodation? @relation(fields: [accommodationId], references: [id])
+  accommodationId String?
+  destination     Destination?   @relation(fields: [destinationId], references: [id])
+  destinationId   String?
+  guide           Guide?         @relation(fields: [guideId], references: [id])
+  guideId         String?
+  rating          Int
+  title           String?
+  comment         String
+  images          String[]
+  helpful         Int            @default(0)
+  verified        Boolean        @default(false)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+enum ReviewType {
+  EXPERIENCE
+  ACCOMMODATION
+  DESTINATION
+  GUIDE
+}
+
+// Saved Items (Wishlist)
+model SavedItem {
+  id              String       @id @default(cuid())
+  user            User         @relation(fields: [userId], references: [id])
+  userId          String
+  itemType        String
+  itemId          String
+  createdAt       DateTime     @default(now())
+
+  @@unique([userId, itemType, itemId])
+}
+
+// Gallery Images
+model GalleryImage {
+  id              String       @id @default(cuid())
+  src             String
+  alt             String
+  title           String
+  titleZh         String?
+  description     String
+  location        String?
+  photographer    String?
+  category        GalleryCategory
+  featured        Boolean      @default(false)
+  uploadedBy      User?        @relation(fields: [uploadedById], references: [id])
+  uploadedById    String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+enum GalleryCategory {
+  LANDSCAPES
+  CULTURE
+  FESTIVALS
+  ARCHITECTURE
+  PEOPLE
+  WILDLIFE
+}
