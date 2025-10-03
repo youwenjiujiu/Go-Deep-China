@@ -122,10 +122,7 @@ export default function SignInPage() {
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl
-                                 text-white placeholder-gray-400
-                                 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10
-                                 transition-all duration-300"
+                        className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500/50 focus:bg-white/10 transition-all duration-300"
                         placeholder="you@example.com"
                         required
                         disabled={isLoading}
@@ -147,10 +144,7 @@ export default function SignInPage() {
                         type="password"
                         value={formData.password}
                         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                        className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl
-                                 text-white placeholder-gray-400
-                                 focus:outline-none focus:border-purple-500/50 focus:bg-white/10
-                                 transition-all duration-300"
+                        className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all duration-300"
                         placeholder="••••••••"
                         required
                         disabled={isLoading}
@@ -162,12 +156,7 @@ export default function SignInPage() {
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  className="w-full relative group/btn overflow-hidden
-                           bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500
-                           hover:from-cyan-600 hover:via-purple-600 hover:to-pink-600
-                           text-white font-semibold py-3.5 rounded-xl
-                           shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70
-                           transition-all duration-300 transform hover:scale-[1.02]"
+                  className="w-full relative group/btn overflow-hidden bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 hover:from-cyan-600 hover:via-purple-600 hover:to-pink-600 text-white font-semibold py-3.5 rounded-xl shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 transform hover:scale-[1.02]"
                   disabled={isLoading}
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
@@ -183,8 +172,7 @@ export default function SignInPage() {
                       </>
                     )}
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
-                                translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000"></div>
                 </Button>
               </form>
 
@@ -198,10 +186,7 @@ export default function SignInPage() {
               {/* Google Sign In */}
               <Button
                 onClick={handleGoogleSignIn}
-                className="w-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20
-                         text-white font-medium py-3.5 rounded-xl
-                         transition-all duration-300 transform hover:scale-[1.02]
-                         backdrop-blur-sm"
+                className="w-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-medium py-3.5 rounded-xl transition-all duration-300 transform hover:scale-[1.02] backdrop-blur-sm"
                 disabled={isLoading}
               >
                 <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
