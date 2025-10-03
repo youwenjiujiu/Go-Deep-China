@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronRight, Users } from "lucide-react"
@@ -121,9 +122,11 @@ export default function EthnicCultures() {
               </button>
             ))}
 
-            <Button variant="outline" className="w-full mt-4">
-              View All 25 Groups
-            </Button>
+            <Link href="/culture">
+              <Button variant="outline" className="w-full mt-4">
+                View All 25 Groups
+              </Button>
+            </Link>
           </div>
 
           {/* Right: Detailed View */}
@@ -195,12 +198,16 @@ export default function EthnicCultures() {
 
                 {/* CTA */}
                 <div className="flex gap-3 mt-6">
-                  <Button className="flex-1 bg-emerald-600 hover:bg-emerald-700">
-                    Explore {selectedGroup.name} Culture
-                  </Button>
-                  <Button variant="outline" className="flex-1">
-                    View Destinations
-                  </Button>
+                  <Link href={`/culture/${selectedGroup.id}`} className="flex-1">
+                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
+                      Explore {selectedGroup.name} Culture
+                    </Button>
+                  </Link>
+                  <Link href="/destinations" className="flex-1">
+                    <Button variant="outline" className="w-full">
+                      View Destinations
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
